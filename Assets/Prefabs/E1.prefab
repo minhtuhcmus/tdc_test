@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2862259157646137141}
   - component: {fileID: 2862259157646137140}
   m_Layer: 0
-  m_Name: Spine GameObject (Enemy_01)
+  m_Name: E1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

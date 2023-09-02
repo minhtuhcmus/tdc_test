@@ -1,19 +1,43 @@
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero : MonoBehaviour
+public abstract class Hero : MonoBehaviour
 {
-  public enum HeroType
+  public HeroData heroData;
+  private bool isAttacking;
+  private List<GameObject> enemies;
+  private CircleCollider2D rangeAttack;
+  private SkeletonAnimation skeletonAnimation;
+
+  private void Awake()
   {
-    H1,
-    H2
+    rangeAttack = GetComponent<CircleCollider2D>();
+    skeletonAnimation = heroData.HeroSpineData.GetComponent<SkeletonAnimation>();
+    skeletonAnimation.AnimationState.SetAnimation(0, "idle", true);
   }
-  public List<HeroData> heroDatas;
-  public HeroType type { get; private set; }
-  public HeroData heroData { get; private set; }
-  public Hero(HeroType heroType)
+  private void Update()
   {
-    heroData = heroDatas[(int)heroType];
+    if (enemies.Count == 0) {
+      isAttacking = false;
+    }
   }
+  private void FixedUpdate()
+  {
+    if (isAttacking)
+    {
+      skeletonAnimation.AnimationState.SetAnimation(0, "atk", true);
+      Attack();
+    }
+  }
+
+  private void OnTriggerEnter2D(Collider2D collision)
+  {
+    collision.gameObject.CompareTag("Enemy");
+    enemies.Add(collision.gameObject);
+    isAttacking = true;
+  }
+
+  public abstract void Attack();
 }
