@@ -9,6 +9,8 @@ public abstract class Enemy : MonoBehaviour
   private int health;
   private SkeletonAnimation skeletonAnimation;
 
+  public Vector3 target;
+
   private void Awake()
   {
     health = enemyData.Health;

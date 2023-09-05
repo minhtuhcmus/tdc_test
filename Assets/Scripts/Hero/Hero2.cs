@@ -6,6 +6,6 @@ public class Hero2 : Hero
 {
   public override void Attack()
   {
-    throw new System.NotImplementedException();
+    Debug.Log("Hero 2 Attack");
   }
 }

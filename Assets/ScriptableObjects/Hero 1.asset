@@ -16,3 +16,4 @@ MonoBehaviour:
   Range: 2
   Speed: 0.5
   Damage: 1
+  AttackType: atk
